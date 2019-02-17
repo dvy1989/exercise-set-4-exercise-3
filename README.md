@@ -1,11 +1,29 @@
 # Exercise set 4: Exercise 3
 
-## Installation
+This project requires the following software to be installed:
 
-This assignment was implemented with Python version 3.7.1. It is not Python 2 compatible.
+* Python 3.7.1
+* NodeJs 11.0.0
 
-The assignment was created with Python virtual environment, so the firts thing to do is to create this environment locally. To do this switch to repository folder and run:
+The solution was tested only for the described configurations. Currect work with other configurations is not guaranteed.
 
-```{bash}
-python3 -m venv /path/to/new/virtual/environment
+Installation includes the fllowing steps:
+1. In git repository folder run the following command to initiate virtual environment:
+
+```bash
+python3 -m venv venv
+```
+
+2. Activate virtual environment by running:
+
+```bash
+venv\Scripts\activate
+```
+
+3. If everything is done correctly you should see *(venv)* in the beginning of the console line.
+
+4. Install all required Python packages. This requires switching to folder Question3 (it is subfolder of repository folder) and running:
+
+```bash
+pip install -r packages.txt
 ```
