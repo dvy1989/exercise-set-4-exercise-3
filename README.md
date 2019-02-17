@@ -70,3 +70,13 @@ And then:
 ```bash
 python exercise4-backup.py
 ```
+
+## Functionality
+
+The main idea of this application is to download a certain version of a file from AWS bucket. AWS bucket is predefined and cn not be changed. When the applicaton starts it offers a set of commands:
+
+# *list*: lists all files in the bucket;
+# *backup*: this command asks a user to select a file and then puts it to the bucket;
+# *versions*: this command aksk a user for a key designating a file in the bucket and then lists all versions of this file. All versions have numbers. Number 1 means the earliest version of the file.
+# *download*: downloads a given verson of the file (version and file should be provided by user).
+# *exit*: stops the application.
