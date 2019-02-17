@@ -22,6 +22,7 @@ def get_user_command():
     print("To get a list of objects in bucket type \"list\"")
     print("To backup a file to bucket type \"backup\"")
     print("To get all versions of a certain file \"versions\"")
+    print("To download a file of a certain version \"versions\"")
     print("To stop the application type \"exit\"")
     return input("Type command here: ")
 

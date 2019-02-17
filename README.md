@@ -44,7 +44,7 @@ aws_secret_access_key=<your AWS secret access key>
 aws_session_token=<your AWS session token>
 ```
 
-According to AWS SDK documentation session token is optional, but I had to provide it (otherwise the solution did not work).
+According to AWS SDK documentation session token is optional, but I had to provide it (otherwise the solution did not work). This file configures API keys to make SDK working. It is also possible to provide API keys directly in the code, but such option does not suite for storing the code into a repository.
 
 After this you need to create a file called *config* in *.aws* folder. This file should have the following content:
 
@@ -53,4 +53,20 @@ After this you need to create a file called *config* in *.aws* folder. This file
 region=us-east-1
 ```
 
+This is required as bucket is located in regison us-east-1 and the region is not specified in the code (so the application can be used in any region without changing its code).
+
 Now, the application is ready for usage.
+
+## Running the application
+
+To run the application it is required to start virtual environment first. To do that run the following command in repository folder:
+
+```bash
+venv\Scripts\activate
+```
+
+And then:
+
+```bash
+python exercise4-backup.py
+```
