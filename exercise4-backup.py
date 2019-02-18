@@ -11,7 +11,7 @@ def get_access_to_bucket(bucket_name):
         s3 = boto3.resource("s3")
         bucket = s3.Bucket(bucket_name)
         print("Got access to bucket")
-        return bucket, s3
+        return bucket
     except Exception as e:
         print("Can not get access to bucket: %s" % e)
         return None
@@ -53,6 +53,7 @@ def get_versions_of_file(bucket):
     versions = list()
     for object_version in bucket.object_versions.filter(Prefix=file_name):
         versions.append({"timestamp": object_version.last_modified, "version_id": object_version.version_id, "version_obj": object_version})
+    # Just in case sort by version timestamp in ascending order
     if len(versions) > 0:
         versions.sort(key=lambda x: x["timestamp"])
     return versions, file_name
@@ -64,8 +65,8 @@ def print_versions_of_file(bucket):
         versions, file_name = get_versions_of_file(bucket)
         if len(versions) > 0:
             print("Versions of file %s available in bucket %s" % (file_name, bucket.name))
-            versions.sort(key=lambda x: x["timestamp"])
             for i in range(0, len(versions)):
+                # Assign each version a number starting from 1
                 print("Version: %s, Date: %s" % (i + 1, versions[i]["timestamp"]))
         else:
             print("File %s was not found in bucket" % file_name)
@@ -74,7 +75,7 @@ def print_versions_of_file(bucket):
 
 
 def download_file(bucket_name, file_name, version_id):
-    download_to_path = input("Provide a path to which the file whould be downloaded (or press Enter key to download it to the current folder): ")
+    download_to_path = input("Provide a path to which the file should be downloaded (or press Enter key to download it to the current folder): ")
     if download_to_path == "":
         download_to_path = file_name
     # Requesting a certain version of object works only via client
@@ -89,6 +90,7 @@ def download_certain_version_of_file(bucket):
         if len(versions) > 0:
             version_id = None
             version = input("Provide a version of file (or press Enter key to get the latest): ")
+            # Version numbering starts from 1. That is why version 0 is invalid
             if version == "":
                 version = len(versions)
                 version_id = versions[len(versions) - 1]["version_obj"].id
@@ -121,6 +123,7 @@ def delete_certain_version_of_file(bucket):
         if len(versions) > 0:
             version_id = None
             version = input("Provide a version of file (or press Enter key to get the latest): ")
+            # Version numbering starts from 1. That is why version 0 is invalid
             if version == "":
                 version = len(versions)
                 version_id = versions[len(versions) - 1]["version_obj"].id
@@ -143,7 +146,7 @@ def delete_certain_version_of_file(bucket):
 
 
 if __name__ == "__main__":
-    bucket, s3 = get_access_to_bucket(BUCKET_NAME)
+    bucket = get_access_to_bucket(BUCKET_NAME)
     if bucket is not None:
         user_command = ""
         while user_command != "exit":
