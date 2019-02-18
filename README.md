@@ -81,3 +81,5 @@ The main idea of this application is to download a certain version of a file fro
 1. *download*: downloads a given version of the file (version and file should be provided by user).
 1. *delete*: deletes a given version of the file (version and file should be provided by user).
 1. *exit*: stops the application.
+
+Note: commands *download* and *delete* can use only those version numbers which are provided by *versions* command.
