@@ -78,5 +78,6 @@ The main idea of this application is to download a certain version of a file fro
 1. *list*: lists all files in the bucket;
 1. *backup*: this command asks a user to select a file and then puts it to the bucket;
 1. *versions*: this command aksk a user for a key designating a file in the bucket and then lists all versions of this file. All versions have numbers. Number 1 means the earliest version of the file.
-1. *download*: downloads a given verson of the file (version and file should be provided by user).
+1. *download*: downloads a given version of the file (version and file should be provided by user).
+1. *delete*: deletes a given version of the file (version and file should be provided by user).
 1. *exit*: stops the application.
